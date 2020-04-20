@@ -4,6 +4,7 @@ import sys, inspect
 import random
 
 import quote_types_factories
+import twitter
 
 def main():
 	quote_types_classes = inspect.getmembers(sys.modules['quote_types_factories'], inspect.isclass)
@@ -11,11 +12,8 @@ def main():
 
 	quote_factory = cls_quote_type_factory[1]()
 	quote = quote_factory.create()
-	quote_text = quote.text
-	quote_author = quote.author
-	
-	print(quote_text)
-	print(quote_author)
+
+	twitter.post(quote)
 
 if __name__ == "__main__":
 	main()
